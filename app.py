@@ -27,3 +27,10 @@ if __name__ == '__main__':
     # Menjalankan server di port 5000
     print("Server berjalan! Buka http://localhost:5000 di browsermu.")
     socketio.run(app, debug=True)
+    
+# Menerima data coretan dari satu pemain, lalu mengirimnya ke SEMUA pemain lain
+@socketio.on('coretan_baru')
+def handle_drawing(data):
+    # broadcast=True berarti kirim ke banyak orang
+    # include_self=False berarti JANGAN kirim balik ke orang yang menggambar
+    emit('gambar_ke_layar', data, broadcast=True, include_self=False)
