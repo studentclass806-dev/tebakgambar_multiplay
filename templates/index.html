@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Gambar</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Selamat Datang di Game Tebak Gambar!</h1>
+    <p>Status Koneksi: <span id="status" style="color: red;">Terputus</span></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    
+    <script>
+        // Membuka koneksi ke server
+        const socket = io();
+
+        // Jika berhasil terhubung, ubah tulisan status
+        socket.on('connect', function() {
+            document.getElementById('status').innerText = 'Terhubung!';
+            document.getElementById('status').style.color = 'green';
+            console.log('Berhasil terhubung ke server!');
+        });
+    </script>
+</body>
+</html>
