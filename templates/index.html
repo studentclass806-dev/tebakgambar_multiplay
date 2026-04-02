@@ -4,23 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Tebak Gambar</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        /* Memberikan garis pinggir pada kanvas agar terlihat seperti papan tulis */
+        canvas {
+            border: 3px solid #333;
+            background-color: #ffffff;
+            cursor: crosshair; /* Mengubah kursor jadi tanda plus (+) saat di atas kanvas */
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
-    <h1>Selamat Datang di Game Tebak Gambar!</h1>
+    <h1>Ayo Mulai Menggambar! 🎨</h1>
     <p>Status Koneksi: <span id="status" style="color: red;">Terputus</span></p>
+
+    <canvas id="papanGambar" width="800" height="500"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     
-    <script>
-        // Membuka koneksi ke server
-        const socket = io();
+    <script src="/static/script.js"></script>
 
-        // Jika berhasil terhubung, ubah tulisan status
+    <script>
+        // Variabel 'socket' sudah dibuat di dalam script.js, jadi kita tinggal pakai
         socket.on('connect', function() {
             document.getElementById('status').innerText = 'Terhubung!';
             document.getElementById('status').style.color = 'green';
-            console.log('Berhasil terhubung ke server!');
         });
     </script>
 </body>
