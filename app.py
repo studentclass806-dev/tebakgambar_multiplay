@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 # Inisialisasi aplikasi Flask
 app = Flask(__name__)
@@ -26,8 +26,7 @@ def handle_disconnect():
 # Menerima data coretan dari satu pemain, lalu mengirimnya ke SEMUA pemain lain
 @socketio.on('coretan_baru')
 def handle_drawing(data):
-    # broadcast=True berarti kirim ke banyak orang
-    # include_self=False berarti JANGAN kirim balik ke orang yang menggambar
+    # emit sekarang sudah dikenali karena sudah di-import di atas!
     emit('gambar_ke_layar', data, broadcast=True, include_self=False)
 
 if __name__ == '__main__':
